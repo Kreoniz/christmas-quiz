@@ -1,18 +1,26 @@
 <script>
   import { onMount } from 'svelte';
-  let theme = 'light';
-  let body;
-
+  
+  let theme;
+  let button;
+  
   onMount(() => {
-    body = document.querySelector('body');
-    body.classList.add(theme);
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      theme = 'dark';
+    } else {
+      theme = 'light';
+    }
+
+    document.body.classList.add(theme);
   });
 
   function toggleTheme() {
-    body.classList.remove(theme);
+    document.body.classList.remove(theme);
+    button.classList.remove(theme);
     theme = theme === 'dark' ? 'light' : 'dark';
-    body.classList.add(theme);
+    document.body.classList.add(theme);
+    button.classList.add(theme);
   }
 </script>
 
-<button type="button" on:click={toggleTheme}>Toggle Theme</button>
+<button bind:this={button} type="button" on:click={toggleTheme}>Toggle Theme</button>
