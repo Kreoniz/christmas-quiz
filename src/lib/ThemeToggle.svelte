@@ -49,7 +49,6 @@
     z-index: 10;
     background: var(--text);
 
-    width: 60px;
     aspect-ratio: 1;
     padding: 10px;
     border-radius: 10px;

@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import { writable } from 'svelte/store';
   import { fly } from 'svelte/transition';
-  import ThemeToggle from '$lib/themeToggle.svelte';
+  import ThemeToggle from '$lib/ThemeToggle.svelte';
 
   export let theme;
 
