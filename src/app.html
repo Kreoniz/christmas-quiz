@@ -6,6 +6,24 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%sveltekit.head%
 	</head>
+  <style>
+    body {
+      background: var(--background);
+      color: var(--text);
+
+      transition: 0.4s ease;
+    }
+
+    body.light {
+      --background: white;
+      --text: black;
+    }
+
+    body.dark {
+      --background: black;
+      --text: white;
+    }
+  </style>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
