@@ -5,6 +5,7 @@
 
   onMount(() => {
     body = document.querySelector('body');
+    body.classList.add(theme);
   });
 
   function toggleTheme() {
@@ -14,4 +15,4 @@
   }
 </script>
 
-<button on:click={toggleTheme}>Toggle Theme</button>
+<button type="button" on:click={toggleTheme}>Toggle Theme</button>
