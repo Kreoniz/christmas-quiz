@@ -1,32 +1,29 @@
 <script>
   import { onMount } from 'svelte';
   import { writable } from 'svelte/store';
-  import ThemeToggle from './themeToggle.svelte';
+  import { fly } from 'svelte/transition';
+  import ThemeToggle from '$lib/themeToggle.svelte';
 
   export let theme;
 
-
   let hamburgerMenu;
   let body;
+  let menuOpen = false;
 
   function toggleMenu() {
     hamburgerMenu.classList.toggle('open');
+    menuOpen = !menuOpen;
   }
 
   function setBgColorVar() {
     theme = writable(getComputedStyle(body).getPropertyValue('--background'));
-    console.log(theme);
   }
 
   onMount(() => {
     body = document.querySelector('body');
     setBgColorVar();
-    console.log(theme);
   });
 </script>
-
-<svelte:head>
-</svelte:head>
 
 <nav>
   <ThemeToggle />
@@ -38,8 +35,15 @@
     >
     <span></span>
   </button>
-
 </nav>
+
+{#if menuOpen}
+  <div transition:fly={{ x: 500, duration: 1000, opacity: 0 }} class="menu-content">
+    <a on:click={toggleMenu} href="/">Quiz</a>
+    <a on:click={toggleMenu} href="/results">Results</a>
+    <a on:click={toggleMenu} href="/about">About</a>
+  </div>
+{/if}
 
 <slot />
 
@@ -47,16 +51,16 @@
   nav {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   button {
     appearance: none;
     border: none;
     background: none;
-  }
 
-  button {
     position: relative;
+    z-index: 10;
 
     width: 60px;
     height: 45px;
@@ -113,5 +117,35 @@
     transform: rotate(-45deg);
     bottom: -2px!important;
     left: 11px!important;
+  }
+
+  .menu-content {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+    background-color: var(--background);
+
+    transition: var(--background-transition);
+  }
+
+  .menu-content a {
+    font-size: 2rem;
+    color: var(--text);
+    line-height: 1.5;
+    text-decoration: none;
+    margin-bottom: 1rem;
+  }
+
+  .menu-content a:hover {
+    text-decoration: underline;
   }
 </style>
