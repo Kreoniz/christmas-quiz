@@ -3,10 +3,6 @@
 	import { writable } from 'svelte/store';
 	import { fly } from 'svelte/transition';
 	import ThemeToggle from '$lib/ThemeToggle.svelte';
-	import { messages } from '$lib/files/messages.js';
-	import { koreanTypewriter } from '$lib/utils/transitions.js';
-
-	let i = -1;
 
 	export let theme;
 
@@ -26,28 +22,13 @@
 	onMount(() => {
 		body = document.querySelector('body');
 		setBgColorVar();
-
-		const interval = setInterval(() => {
-			i += 1;
-			i %= messages.length;
-		}, 5000);
-
-		return () => {
-			clearInterval(interval);
-		};
 	});
 </script>
 
 <nav>
-	<ThemeToggle />
-
-	<div class="typewriter">
-		{#key i}
-			<p in:koreanTypewriter>
-				{messages[i] || ''}
-			</p>
-		{/key}
-	</div>
+  <div class="toggle">
+    <ThemeToggle />
+  </div>
 
 	<button bind:this={hamburgerMenu} on:click={toggleMenu} type="button">
 		<span></span>
@@ -56,9 +37,10 @@
 
 {#if menuOpen}
   <div class="menu-content" transition:fly={{ x: 500, duration: 1000, opacity: 0 }}>
-    <a on:click={toggleMenu} href="/">Quiz</a>
-    <a on:click={toggleMenu} href="/results">Results</a>
+    <a on:click={toggleMenu} href="/">Home</a>
+    <a on:click={toggleMenu} href="/quiz">Quiz</a>
     <a on:click={toggleMenu} href="/about">About</a>
+    <a on:click={toggleMenu} href="/cats">Cats!</a>
   </div>
 {/if}
 
@@ -68,18 +50,21 @@
 	nav {
 		position: relative;
 		z-index: 10;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
 		padding: 10px;
 		border-bottom: 1px solid grey;
 		margin: 0 0 1rem;
+
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
 
 	button {
 		appearance: none;
 		border: none;
 		background: none;
+
+    flex: 0 0 auto;
 
 		position: relative;
 		z-index: 10;
@@ -143,6 +128,7 @@
 
 	.menu-content {
 		position: absolute;
+    z-index: 1;
 
 		top: 0;
 		left: 0;
@@ -170,4 +156,8 @@
 	.menu-content a:hover {
 		text-decoration: underline;
 	}
+
+  .toggle {
+    flex: 0 0 auto;
+  }
 </style>

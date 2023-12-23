@@ -1,30 +1,55 @@
 <script>
   import Icon from '$lib/utils/Icon.svelte';
+  import MagicalText from '$lib/MagicalText.svelte';
 
-  const iconNames = ['cat1', 'cat2', 'cat3', 'cat4'];
+  const name = 'Kreoniz';
 </script>
 
-<h1>Welcome to the yet-to-become quiz app!</h1>
+<div class="container">
+  <div class="cat">
+    <Icon name="cat1" color="var(--text)" />
+  </div>
 
-<div class="cats">
-  {#each iconNames as name}
-    <div class="icon">
-      <Icon name={name} color="var(--text)" />
-    </div>
-  {/each}
+  <h1>Hi, <MagicalText text={name} />, here's something cool I've made for you!</h1>
+
+  <a href="/quiz">Take the Christmas quiz!</a>
 </div>
 
 <style>
-  .cats {
+  .container {
+    text-align: center;
+    padding: 10px 20px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 50px;
+    flex-direction: column;
     gap: 2rem;
   }
 
-  .icon {
+  h1 {
+    font-size: 2rem;
+    line-height: 1.5;
+    font-weight: 600;
+  }
+
+  .cat {
     margin: auto;
-    max-width: 200px;
+    max-width: 50%;
+  }
+
+  a {
+    font-weight: 500;
+    display: inline-block;
+    font-size: 1.4rem;
+    text-decoration: none;
+    width: fit-content;
+    margin: auto;
+    border-radius: 1rem;
+
+    padding: 1rem;
+    background: var(--text);
+    color: var(--background);
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
 </style>
