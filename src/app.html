@@ -32,6 +32,9 @@
       color: var(--text);
 
       transition: var(--background-transition);
+
+      overflow-x: hidden;
+      overflow-y: auto;
     }
 
     body.light {
@@ -50,14 +53,14 @@
       --accent: #3e7a5f;
     }
 
-    body {
-      display: grid;
-      place-items: center;
-      min-height: 100vh;
-      height: 100%;
-    }
-
     @media (min-width: 400px) {
+      body {
+        display: grid;
+        justify-items: center;
+        min-height: 100vh;
+        height: 100%;
+      }
+
       .phone {
         position: relative;
         width: auto;
@@ -66,8 +69,9 @@
         border: 0.2em solid var(--text);
         border-radius: 1em;
         padding: 1em 0 0;
+
         overflow-x: hidden;
-        overflow-y: scroll;
+        overflow-y: auto;
 
         -ms-overflow-style: none;
         scrollbar-width: none;
