@@ -49,9 +49,14 @@
 
 <style>
   nav {
+    position: relative;
+    z-index: 10;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid grey;
+    margin: 0 0 1rem;
   }
 
   button {
