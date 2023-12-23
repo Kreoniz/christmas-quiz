@@ -55,11 +55,11 @@
 </nav>
 
 {#if menuOpen}
-	<div transition:fly={{ x: 500, duration: 1000, opacity: 0 }} class="menu-content">
-		<a on:click={toggleMenu} href="/">Quiz</a>
-		<a on:click={toggleMenu} href="/results">Results</a>
-		<a on:click={toggleMenu} href="/about">About</a>
-	</div>
+  <div class="menu-content" transition:fly={{ x: 500, duration: 1000, opacity: 0 }}>
+    <a on:click={toggleMenu} href="/">Quiz</a>
+    <a on:click={toggleMenu} href="/results">Results</a>
+    <a on:click={toggleMenu} href="/about">About</a>
+  </div>
 {/if}
 
 <slot />
