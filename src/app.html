@@ -3,116 +3,119 @@
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <meta name="theme-color" content="#9293d6" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#282a67" media="(prefers-color-scheme: dark)">
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+		/>
+		<meta name="theme-color" content="#9293d6" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#282a67" media="(prefers-color-scheme: dark)" />
 		%sveltekit.head%
 	</head>
-  <style>
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      border: 0;
-      font: inherit;
-      font-size: 100%;
-      touch-action: manipulation;
-      vertical-align: baseline;
-    }
+	<style>
+		*,
+		*::before,
+		*::after {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font: inherit;
+			font-size: 100%;
+			touch-action: manipulation;
+			vertical-align: baseline;
+		}
 
-    body {
-      line-height: 1;
-      min-height: 100vh;
+		body {
+			line-height: 1;
+			min-height: 100vh;
 
-      --background-transition: 0.4s ease;
+			--background-transition: 0.4s ease;
 
-      font-family: system-ui, sans-serif;
+			font-family: system-ui, sans-serif;
 
-      background: var(--background);
-      color: var(--text);
+			background: var(--background);
+			color: var(--text);
 
-      transition: var(--background-transition);
+			transition: var(--background-transition);
 
-      overflow-x: hidden;
-      overflow-y: auto;
-    }
+			overflow-x: hidden;
+			overflow-y: auto;
+		}
 
-    body.light {
-      --text: #0f1209;
-      --background: #f7f9f3;
-      --primary: #8eac5b;
-      --secondary: #9ccdaa;
-      --accent: #83c1a5;
-    }
+		body.light {
+			--text: #0f1209;
+			--background: #f7f9f3;
+			--primary: #8eac5b;
+			--secondary: #9ccdaa;
+			--accent: #83c1a5;
+		}
 
-    body.dark {
-      --text: #f4f6ee;
-      --background: #0b0e07;
-      --primary: #85a352;
-      --secondary: #32623f;
-      --accent: #3e7a5f;
-    }
+		body.dark {
+			--text: #f4f6ee;
+			--background: #0b0e07;
+			--primary: #85a352;
+			--secondary: #32623f;
+			--accent: #3e7a5f;
+		}
 
-    .phone {
-      height: 100%;
-    }
+		.phone {
+			height: 100%;
+		}
 
-    @media (min-width: 400px) {
-      body {
-        display: grid;
-        justify-items: center;
-        min-height: 100vh;
-        height: 100%;
-      }
+		@media (min-width: 400px) {
+			body {
+				display: grid;
+				justify-items: center;
+				min-height: 100vh;
+				height: 100%;
+			}
 
-      .phone {
-        position: relative;
-        width: auto;
-        height: 36em;
-        aspect-ratio: 9 / 16;
-        border: 0.2em solid var(--text);
-        border-radius: 1em;
-        padding: 1em 0 0;
+			.phone {
+				position: relative;
+				width: auto;
+				height: 36em;
+				aspect-ratio: 9 / 16;
+				border: 0.2em solid var(--text);
+				border-radius: 1em;
+				padding: 1em 0 0;
 
-        overflow-x: hidden;
-        overflow-y: auto;
+				overflow-x: hidden;
+				overflow-y: auto;
 
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
+				-ms-overflow-style: none;
+				scrollbar-width: none;
+			}
 
-      .phone::-webkit-scrollbar {
-        display: none;
-      }
+			.phone::-webkit-scrollbar {
+				display: none;
+			}
 
-      .phone::after {
-        position: absolute;
-        content: '';
-        background: var(--text);
-        width: 60%;
-        height: 1rem;
-        left: 20%;
-        top: 0;
-        border-radius: 0 0 0.5em 0.5em
-      }
-    }
-  </style>
+			.phone::after {
+				position: absolute;
+				content: '';
+				background: var(--text);
+				width: 60%;
+				height: 1rem;
+				left: 20%;
+				top: 0;
+				border-radius: 0 0 0.5em 0.5em;
+			}
+		}
+	</style>
 	<body data-sveltekit-preload-data="hover">
-    <div class="phone">
-      <div style="display: contents">%sveltekit.body%</div>
-    </div>
+		<div class="phone">
+			<div style="display: contents">%sveltekit.body%</div>
+		</div>
 
-    <script>
-      let theme;
+		<script>
+			let theme;
 
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        theme = 'dark';
-      } else {
-        theme = 'light';
-      }
+			if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				theme = 'dark';
+			} else {
+				theme = 'light';
+			}
 
-      document.body.classList.add(theme);
-    </script>
+			document.body.classList.add(theme);
+		</script>
 	</body>
 </html>

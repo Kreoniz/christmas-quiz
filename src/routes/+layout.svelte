@@ -26,9 +26,9 @@
 </script>
 
 <nav>
-  <div class="toggle">
-    <ThemeToggle />
-  </div>
+	<div class="toggle">
+		<ThemeToggle />
+	</div>
 
 	<button bind:this={hamburgerMenu} on:click={toggleMenu} type="button">
 		<span></span>
@@ -36,12 +36,12 @@
 </nav>
 
 {#if menuOpen}
-  <div class="menu-content" transition:fly={{ x: 500, duration: 1000, opacity: 0 }}>
-    <a on:click={toggleMenu} href="/">Home</a>
-    <a on:click={toggleMenu} href="/quiz">Quiz</a>
-    <a on:click={toggleMenu} href="/about">About</a>
-    <a on:click={toggleMenu} href="/cats">Cats!</a>
-  </div>
+	<div class="menu-content" transition:fly={{ x: 500, duration: 1000, opacity: 0 }}>
+		<a on:click={toggleMenu} href="/">Home</a>
+		<a on:click={toggleMenu} href="/quiz">Quiz</a>
+		<a on:click={toggleMenu} href="/about">About</a>
+		<a on:click={toggleMenu} href="/cats">Cats!</a>
+	</div>
 {/if}
 
 <slot />
@@ -64,7 +64,7 @@
 		border: none;
 		background: none;
 
-    flex: 0 0 auto;
+		flex: 0 0 auto;
 
 		position: relative;
 		z-index: 10;
@@ -128,7 +128,7 @@
 
 	.menu-content {
 		position: absolute;
-    z-index: 1;
+		z-index: 1;
 
 		top: 0;
 		left: 0;
@@ -157,7 +157,7 @@
 		text-decoration: underline;
 	}
 
-  .toggle {
-    flex: 0 0 auto;
-  }
+	.toggle {
+		flex: 0 0 auto;
+	}
 </style>
