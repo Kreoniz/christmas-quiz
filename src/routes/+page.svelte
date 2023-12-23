@@ -1,5 +1,5 @@
 <script>
-  import Icon from '$lib/Icon.svelte';
+  import Icon from '$lib/utils/Icon.svelte';
 
   const iconNames = ['cat1', 'cat2', 'cat3', 'cat4'];
 </script>
@@ -9,7 +9,7 @@
 <div class="cats">
   {#each iconNames as name}
     <div class="icon">
-      <Icon name={name} color="var(--text)" size="200px" />
+      <Icon name={name} color="var(--text)" />
     </div>
   {/each}
 </div>
@@ -25,5 +25,6 @@
 
   .icon {
     margin: auto;
+    max-width: 200px;
   }
 </style>

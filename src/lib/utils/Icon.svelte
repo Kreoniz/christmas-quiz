@@ -1,9 +1,6 @@
 <script>
     export let name;
     export let color = "var(--text)";
-    export let size;
-    const width = size;
-    const height = size;
     let icons = [
         {
           box: '157.13 111.18 319.78 304.25',
@@ -32,8 +29,6 @@
 
 <svg
   class={$$props.class}
-  {width}
-  {height}
   fill={color}
   viewBox={displayIcon.box}
   >
@@ -42,7 +37,7 @@
 
 <style>
   svg {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
   }
 </style>
