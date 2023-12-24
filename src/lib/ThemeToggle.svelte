@@ -6,10 +6,14 @@
 	let button;
 
 	onMount(() => {
-		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-			theme = 'dark';
-		} else {
-			theme = 'light';
+		theme = localStorage.getItem('theme');
+
+		if (!theme) {
+			if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				theme = 'dark';
+			} else {
+				theme = 'light';
+			}
 		}
 
 		document.body.classList.add(theme);
@@ -21,6 +25,8 @@
 		theme = theme === 'dark' ? 'light' : 'dark';
 		document.body.classList.add(theme);
 		button.classList.add(theme);
+
+		localStorage.setItem('theme', theme);
 	}
 </script>
 
