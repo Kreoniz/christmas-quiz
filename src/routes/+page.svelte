@@ -5,6 +5,10 @@
 	const name = 'Kreoniz';
 </script>
 
+<svelte:head>
+	<title>Home</title>
+</svelte:head>
+
 <div class="container">
 	<div class="cat">
 		<Icon name="cat1" color="var(--text)" />
