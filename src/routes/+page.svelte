@@ -1,6 +1,7 @@
 <script>
 	import Icon from '$lib/utils/Icon.svelte';
 	import MagicalText from '$lib/MagicalText.svelte';
+	export let data;
 
 	const name = 'Kreoniz';
 </script>
@@ -11,7 +12,7 @@
 
 <div class="container">
 	<div class="cat">
-		<Icon name="cat1" color="var(--text)" />
+		<Icon name={data.cat} color="var(--text)" />
 	</div>
 
 	<h1>Hey, <MagicalText text={name} />, here's something cool I've made for you!</h1>
@@ -36,7 +37,8 @@
 
 	.cat {
 		margin: auto;
-		max-width: 50%;
+		height: 200px;
+		aspect-ratio: 1;
 	}
 
 	a {
