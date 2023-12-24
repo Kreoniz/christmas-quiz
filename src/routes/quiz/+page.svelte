@@ -3,11 +3,11 @@
 	import { fly } from 'svelte/transition';
 	import { questions } from '$lib/files/questions.js';
 	import Icon from '$lib/utils/Icon.svelte';
+	import ChristmasHat from '$lib/img/christmas-hat.webp';
 
 	let current = 0;
 	let question = questions[current];
 	let duration = 0;
-	let show = false;
 
 	let answers = {};
 	for (let i = 0; i < questions.length; i++) {
@@ -107,7 +107,10 @@
 			</div>
 
 			{#if current === questions.length - 1}
-				<button class="submit" type="button">Submit answers</button>
+				<button class="submit" type="button">
+					<img class="button-hat" src={ChristmasHat} alt="christmas hat" />
+					Submit answers
+				</button>
 			{/if}
 		</div>
 	{/key}
@@ -166,8 +169,9 @@
 	}
 
 	.submit {
+		position: relative;
 		display: block;
-		margin: 2rem auto;
+		margin: 3rem auto 0;
 		color: var(--background);
 		background-color: var(--text);
 
@@ -177,5 +181,16 @@
 		padding: 0.8rem 1rem;
 
 		transition: var(--background-transition);
+	}
+
+	.submit:hover {
+		text-decoration: underline;
+	}
+
+	.button-hat {
+		position: absolute;
+		top: -15px;
+		left: -17px;
+		height: 50px;
 	}
 </style>

@@ -48,7 +48,7 @@
 		text-decoration: none;
 		width: fit-content;
 		margin: auto;
-		border-radius: 1rem;
+		border-radius: 0.5rem;
 
 		padding: 1rem;
 		background: var(--text);
