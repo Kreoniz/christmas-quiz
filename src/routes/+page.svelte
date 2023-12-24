@@ -10,7 +10,7 @@
 		<Icon name="cat1" color="var(--text)" />
 	</div>
 
-	<h1>Hi, <MagicalText text={name} />, here's something cool I've made for you!</h1>
+	<h1>Hey, <MagicalText text={name} />, here's something cool I've made for you!</h1>
 
 	<a href="/quiz">Take the Christmas quiz!</a>
 </div>
@@ -25,7 +25,7 @@
 	}
 
 	h1 {
-		font-size: 2rem;
+		font-size: 1.8rem;
 		line-height: 1.5;
 		font-weight: 600;
 	}

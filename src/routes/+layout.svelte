@@ -47,7 +47,7 @@
 {/if}
 
 {#key data.url}
-	<div in:fade={{ duration: 300, delay: 300 }} out:fade={{ duration: 300 }}>
+	<div in:fade={{ x: -200, duration: 300, delay: 300 }} out:fade={{ x: 200, duration: 300 }}>
 		<slot />
 	</div>
 {/key}
