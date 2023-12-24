@@ -1,84 +1,162 @@
 <script>
-  import { fly } from 'svelte/transition';
-  import { questions } from '$lib/files/questions.js';
-  console.log(questions);
+	import { onMount } from 'svelte';
+	import { fly } from 'svelte/transition';
+	import { questions } from '$lib/files/questions.js';
+	import Icon from '$lib/utils/Icon.svelte';
 
-  let current = 0;
+	let current = 0;
+	let question = questions[current];
+	let duration = 0;
 
-  let x = -100;
+	let answers = {};
+	for (let i = 0; i < questions.length; i++) {
+		answers[i] = null;
+	}
 
-  function goToQuestion(id) {
-    if (current < id) {
-      side = 'right';
-    } else {
-      side = 'left';
-    }
+	let side = 'right';
+	let x = -100;
 
-    if (id < 0) {
-      current = questions.length - 1;
-    } else if (id >= questions.length) {
-      current = 0;
-    } else {
-      current = id;
-    }
+	function goToQuestion(id) {
+		duration = 500;
+		if (current === id) {
+			return;
+		}
 
-    x = side === 'right' ? 100 : -100;
-  }
+		if (current < id) {
+			side = 'right';
+		} else {
+			side = 'left';
+		}
 
-  let side = 'right';
-  $: question = questions[current];
+		if (id < 0) {
+			current = questions.length - 1;
+		} else if (id >= questions.length) {
+			current = 0;
+		} else {
+			current = id;
+		}
 
-  $: console.log(question, x, side);
+		question = questions[current];
+		x = side === 'right' ? 100 : -100;
+	}
 
+	onMount(() => {
+		const sessionCurrent = Number(sessionStorage.getItem('currentQuizQuestion'));
+		current = sessionCurrent;
+
+		const sessionAnswers = JSON.parse(sessionStorage.getItem('quizAnswers'));
+		if (sessionAnswers) {
+			answers = sessionAnswers;
+		}
+
+		return () => {
+			sessionStorage.setItem('currentQuizQuestion', current);
+			sessionStorage.setItem('quizAnswers', JSON.stringify(answers));
+		};
+	});
+
+	$: question = questions[current];
 </script>
 
-{#key question}
-  <div in:fly={{ x: x, duration: 500, delay: 500 }} out:fly={{ x: -x, duration: 500 }} class="block">
-    <h2 class="question">{question.question}</h2>
-    <ul>
-      {#each question.answers as answer}
-        <li>{answer}</li>
-      {/each}
-    </ul>
+<svelte:head>
+	<title>Quiz</title>
+</svelte:head>
 
-    <div class="buttons">
-      <button on:click={() => goToQuestion(current - 1)}>Previous</button>
-      <button on:click={() => goToQuestion(current + 1)}>Next</button>
-    </div>
-  </div>
-{/key}
+<div class="container">
+	<div class="quiz-navigation">
+		<button class="arrow-btn" on:click={() => goToQuestion(current - 1)}>
+			<Icon name="arrow-left" />
+		</button>
+
+		<div class="indices">
+			{#each questions as question, index}
+				<button
+					data-id={index}
+					on:click={() => goToQuestion(index)}
+					class:active={current === index}
+					type="button"
+					class="index-btn"
+				>
+					{index + 1}
+				</button>
+			{/each}
+		</div>
+
+		<button class="arrow-btn" on:click={() => goToQuestion(current + 1)}>
+			<Icon name="arrow-right" />
+		</button>
+	</div>
+
+	{#key current}
+		<div
+			in:fly={{ x: x, duration: duration, delay: duration }}
+			out:fly={{ x: -x, duration: duration }}
+			class="block"
+		>
+			<h2 class="question">{question.question}</h2>
+			<div class="options">
+				{#each question.answers as answer, id}
+					<div class="option">
+						<label for={id}>
+							<input type="radio" name={current} {id} value={id} bind:group={answers[current]} />
+							{answer}
+						</label>
+					</div>
+				{/each}
+			</div>
+		</div>
+	{/key}
+</div>
 
 <style>
-  .block {
-    position: relative;
-  }
+	.container {
+		height: 100%;
+		padding: 0 1rem;
+	}
 
-  .question {
-    font-size: 2rem;
-    margin-bottom: 5px;
-  }
+	.block {
+		position: relative;
+	}
 
-  li {
-    list-style: none;
-    font-size: 1.2rem;
-  }
+	.question {
+		font-size: 2rem;
+		margin-bottom: 5px;
+	}
 
-  li::before {
-    content: '* ';
-  }
+	.option {
+		font-size: 1.2rem;
+		margin-block: 1rem;
+	}
 
-  .buttons {
-    display: flex;
-    gap: 1rem;
-    padding: 5rem 0;
-    margin: auto;
-  }
+	.quiz-navigation {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 1rem;
+	}
 
-  button {
-    padding: 1rem;
-  }
+	button {
+		appearance: none;
+		background: none;
+	}
 
-  button:hover {
-    cursor: pointer;
-  }
+	.arrow-btn {
+		height: 3rem;
+		aspect-ratio: 1;
+	}
+
+	.index-btn {
+		font-size: 1.5rem;
+		padding: 0.5rem;
+		color: var(--text);
+	}
+
+	.index-btn.active {
+		font-weight: 600;
+		text-decoration: underline;
+	}
+
+	button:hover {
+		cursor: pointer;
+	}
 </style>

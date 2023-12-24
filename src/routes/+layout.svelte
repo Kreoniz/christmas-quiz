@@ -4,6 +4,7 @@
 	import { writable } from 'svelte/store';
 	import { fly, fade } from 'svelte/transition';
 	import ThemeToggle from '$lib/ThemeToggle.svelte';
+	import SnowflakeIcon from '$lib/img/snowflake.svg';
 
 	export let theme;
 	export let data;
@@ -26,6 +27,10 @@
 		setBgColorVar();
 	});
 </script>
+
+<svelte:head>
+	<link rel="icon" type="image/svg" href={SnowflakeIcon} />
+</svelte:head>
 
 <nav>
 	<div class="toggle">
