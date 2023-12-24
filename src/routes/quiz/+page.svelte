@@ -1,12 +1,14 @@
 <script>
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
+  import { tick } from 'svelte'
 	import { questions } from '$lib/files/questions.js';
 	import Icon from '$lib/utils/Icon.svelte';
 
 	let current = 0;
 	let question = questions[current];
 	let duration = 0;
+  let show = false;
 
 	let answers = {};
 	for (let i = 0; i < questions.length; i++) {
@@ -17,6 +19,7 @@
 	let x = -100;
 
 	function goToQuestion(id) {
+    cancelAnimation();
 		duration = 500;
 		if (current === id) {
 			return;
@@ -55,6 +58,12 @@
 		};
 	});
 
+  async function cancelAnimation() {
+      show = false;
+      await tick();
+      show = true;
+  }
+
 	$: question = questions[current];
 </script>
 
@@ -87,25 +96,29 @@
 		</button>
 	</div>
 
-	{#key current}
-		<div
-			in:fly={{ x: x, duration: duration, delay: duration }}
-			out:fly={{ x: -x, duration: duration }}
-			class="block"
-		>
-			<h2 class="question">{question.question}</h2>
-			<div class="options">
-				{#each question.answers as answer, id}
-					<div class="option">
-						<label for={id}>
-							<input type="radio" name={current} {id} value={id} bind:group={answers[current]} />
-							{answer}
-						</label>
-					</div>
-				{/each}
-			</div>
-		</div>
-	{/key}
+  {#key current}
+    <div
+      in:fly={{ x: x, duration: duration, delay: duration }}
+      out:fly={{ x: -x, duration: duration }}
+      class="block"
+    >
+      <h2 class="question">{question.question}</h2>
+      <div class="options">
+        {#each question.answers as answer, id}
+          <div class="option">
+            <label for={id}>
+              <input type="radio" name={current} {id} value={id} bind:group={answers[current]} />
+              {answer}
+            </label>
+          </div>
+        {/each}
+      </div>
+
+      {#if current === questions.length - 1}
+        <button class="submit" type="button">Submit answers</button>
+      {/if}
+    </div>
+  {/key}
 </div>
 
 <style>
@@ -159,4 +172,16 @@
 	button:hover {
 		cursor: pointer;
 	}
+
+  .submit {
+    display: block;
+    margin: 2rem auto;
+    color: var(--background);
+    background-color: var(--text);
+    
+		font-weight: 500;
+    font-size: 1.2rem;
+		border-radius: 0.5rem;
+		padding: 0.8rem 1rem;
+  }
 </style>
