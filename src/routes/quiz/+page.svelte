@@ -1,7 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
-	import { tick } from 'svelte';
 	import { questions } from '$lib/files/questions.js';
 	import Icon from '$lib/utils/Icon.svelte';
 
@@ -19,7 +18,6 @@
 	let x = -100;
 
 	function goToQuestion(id) {
-		cancelAnimation();
 		duration = 500;
 		if (current === id) {
 			return;
@@ -57,12 +55,6 @@
 			sessionStorage.setItem('quizAnswers', JSON.stringify(answers));
 		};
 	});
-
-	async function cancelAnimation() {
-		show = false;
-		await tick();
-		show = true;
-	}
 
 	$: question = questions[current];
 </script>
