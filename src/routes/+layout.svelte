@@ -1,10 +1,12 @@
 <script>
+  import { page } from '$app/stores';
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
-	import { fly } from 'svelte/transition';
+	import { fly, fade } from 'svelte/transition';
 	import ThemeToggle from '$lib/ThemeToggle.svelte';
 
 	export let theme;
+  export let data;
 
 	let hamburgerMenu;
 	let body;
@@ -37,14 +39,18 @@
 
 {#if menuOpen}
 	<div class="menu-content" transition:fly={{ x: 500, duration: 1000, opacity: 0 }}>
-		<a on:click={toggleMenu} href="/">Home</a>
-		<a on:click={toggleMenu} href="/quiz">Quiz</a>
-		<a on:click={toggleMenu} href="/about">About</a>
-		<a on:click={toggleMenu} href="/cats">Cats!</a>
+		<a on:click={toggleMenu} href="/" class:active={$page.url.pathname === "/"}>Home</a>
+		<a on:click={toggleMenu} href="/quiz" class:active={$page.url.pathname === "/quiz"}>Quiz</a>
+		<a on:click={toggleMenu} href="/about" class:active={$page.url.pathname === "/about"}>About</a>
+		<a on:click={toggleMenu} href="/cats" class:active={$page.url.pathname === "/cats"}>Cats!</a>
 	</div>
 {/if}
 
-<slot />
+{#key data.url}
+  <div in:fade={{ duration: 300, delay: 300 }} out:fade={{ duration: 300 }}>
+    <slot />
+  </div>
+{/key}
 
 <style>
 	nav {
@@ -160,4 +166,8 @@
 	.toggle {
 		flex: 0 0 auto;
 	}
+
+  a.active {
+    text-decoration: underline;
+  }
 </style>
