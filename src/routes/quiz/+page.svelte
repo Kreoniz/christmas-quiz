@@ -70,15 +70,15 @@
 		</button>
 
 		<div class="indices">
-			{#each questions as question, index}
+			{#each questions as question (question.id)}
 				<button
-					data-id={index}
-					on:click={() => goToQuestion(index)}
-					class:active={current === index}
+					data-id={question.id}
+					on:click={() => goToQuestion(question.id)}
+					class:active={current === question.id}
 					type="button"
 					class="index-btn"
 				>
-					{index + 1}
+					{question.id + 1}
 				</button>
 			{/each}
 		</div>
@@ -102,7 +102,7 @@
 					<div class="option">
 						<label for={id}>
 							<input type="radio" name={current} {id} value={id} bind:group={answers[current]} />
-							{answer}
+							<span>{answer}</span>
 						</label>
 					</div>
 				{/each}
@@ -145,13 +145,13 @@
 		align-items: center;
 		margin-bottom: 1rem;
 	}
-  
-  .indices {
-    padding: 0 5px;
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-  }
+
+	.indices {
+		padding: 0 5px;
+		display: flex;
+		width: 100%;
+		justify-content: space-around;
+	}
 
 	button {
 		appearance: none;

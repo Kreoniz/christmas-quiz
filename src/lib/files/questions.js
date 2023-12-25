@@ -46,11 +46,5 @@ export const questions = [
 		id: 7,
 		type: 'normal',
 		answers: ["I didn't count them", 'A lot!']
-	},
-	{
-		question: 'How many stars are there in the sky?',
-		id: 8,
-		type: 'normal',
-		answers: ["I didn't count them", 'A lot!']
-	},
+	}
 ];
