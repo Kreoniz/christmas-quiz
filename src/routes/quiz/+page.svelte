@@ -145,6 +145,13 @@
 		align-items: center;
 		margin-bottom: 1rem;
 	}
+  
+  .indices {
+    padding: 0 5px;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
 
 	button {
 		appearance: none;
@@ -158,7 +165,7 @@
 
 	.index-btn {
 		font-size: 1.5rem;
-		padding: 0.5rem;
+		padding: auto;
 		color: var(--text);
 	}
 

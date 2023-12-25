@@ -34,5 +34,23 @@ export const questions = [
 		id: 5,
 		type: 'cheeky',
 		answers: ['Because', 'it', 'is', 'fun']
-	}
+	},
+	{
+		question: 'How many stars are there in the sky?',
+		id: 6,
+		type: 'normal',
+		answers: ["I didn't count them", 'A lot!']
+	},
+	{
+		question: 'How many stars are there in the sky?',
+		id: 7,
+		type: 'normal',
+		answers: ["I didn't count them", 'A lot!']
+	},
+	{
+		question: 'How many stars are there in the sky?',
+		id: 8,
+		type: 'normal',
+		answers: ["I didn't count them", 'A lot!']
+	},
 ];
