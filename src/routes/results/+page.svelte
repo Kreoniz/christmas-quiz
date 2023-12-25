@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import KoreanMessages from '$lib/KoreanMessages.svelte';
 
 	let passed = false;
 
@@ -24,6 +25,10 @@
 		<p class="info">Come back when you take the quiz!</p>
 		<a href="/quiz">Take the Christmas quiz!</a>
 	{/if}
+</div>
+
+<div class="korean-messages">
+	<KoreanMessages />
 </div>
 
 <style>
@@ -60,5 +65,15 @@
 
 	a:hover {
 		text-decoration: underline;
+	}
+
+	.korean-messages {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 2rem;
+		margin: 1rem 1rem;
+		padding: 0.5rem;
+		border: 2px solid var(--text);
 	}
 </style>
