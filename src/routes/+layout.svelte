@@ -46,7 +46,9 @@
 	<div class="menu-content" transition:fly={{ x: 500, duration: 1000, opacity: 0 }}>
 		<a on:click={toggleMenu} href="/" class:active={$page.url.pathname === '/'}>Home</a>
 		<a on:click={toggleMenu} href="/quiz" class:active={$page.url.pathname === '/quiz'}>Quiz</a>
-		<a on:click={toggleMenu} href="/results" class:active={$page.url.pathname === '/results'}>Results</a>
+		<a on:click={toggleMenu} href="/results" class:active={$page.url.pathname === '/results'}
+			>Results</a
+		>
 		<a on:click={toggleMenu} href="/about" class:active={$page.url.pathname === '/about'}>About</a>
 	</div>
 {/if}

@@ -222,6 +222,7 @@
 
 		height: var(--size);
 		width: var(--size);
+		aspect-ratio: 1;
 		border-radius: 50%;
 
 		border: calc(var(--size) / 10) solid var(--text);
