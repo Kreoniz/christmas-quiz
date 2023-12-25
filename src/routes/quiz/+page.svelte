@@ -94,7 +94,9 @@
 			out:fly={{ x: -x, duration: duration }}
 			class="block"
 		>
-			<h2 class="question">{question.question}</h2>
+			<h2 class="question">
+				{question.question}
+			</h2>
 			<div class="options">
 				{#each question.answers as answer, id}
 					<div class="option">
@@ -129,6 +131,7 @@
 	.question {
 		font-size: 2rem;
 		margin-bottom: 5px;
+		line-height: 1.2;
 	}
 
 	.option {
@@ -192,5 +195,33 @@
 		top: -15px;
 		left: -17px;
 		height: 50px;
+	}
+
+	label {
+		padding: 5px 0;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	label:hover {
+		cursor: pointer;
+	}
+
+	input[type='radio'] {
+		appearance: none;
+
+		--size: 1.4rem;
+
+		height: var(--size);
+		width: var(--size);
+		border-radius: 50%;
+
+		border: calc(var(--size) / 10) solid var(--text);
+		transition: var(--background-transition);
+	}
+
+	input[type='radio']:checked {
+		background-color: var(--text);
 	}
 </style>
