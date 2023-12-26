@@ -36,6 +36,7 @@
 	p {
 		margin-block: 8px;
 		line-height: 1.2;
+    font-size: 1.2rem;
 	}
 
 	.info {
