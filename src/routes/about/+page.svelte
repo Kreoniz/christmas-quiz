@@ -9,7 +9,7 @@
 
 <div class="container">
 	<h1>Long story short...</h1>
-	<p class="info centered">
+	<p class="info">
 		This practice project is built with <span class="bold"><MagicalText text="love!" /></span>
 	</p>
 	<a href="https://kit.svelte.dev/" class="svelte">
@@ -23,6 +23,7 @@
 
 <style>
 	.container {
+    text-align: center;
 		padding: 0 1rem;
 	}
 
@@ -59,9 +60,5 @@
 
 	.bold {
 		font-weight: 600;
-	}
-
-	.centered {
-		text-align: center;
 	}
 </style>

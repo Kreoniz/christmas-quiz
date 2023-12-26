@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
-	import { questions, results } from '$lib/files/questions.js';
+	import { questions } from '$lib/files/questions.js';
 	import Icon from '$lib/utils/Icon.svelte';
 	import ChristmasHat from '$lib/img/christmas-hat.webp';
 
@@ -45,7 +45,20 @@
 	function submitAnswers() {
 		submitted = true;
 		if (submitReady) {
-			console.log(answers);
+      const grading = { adventurous: 0, optimistic: 0 };
+      for (let i = 0; i < questions.length; i++) {
+        const points = questions[i].points[answers[i]];
+        grading.adventurous += points[0];
+        grading.optimistic += points[1];
+      }
+
+      let type;
+      if (grading.adventurous > 0 && grading.optimistic > 0) type = 1;
+      else if (grading.adventurous > 0 && grading.optimistic < 0) type = 2;
+      else if (grading.adventurous < 0 && grading.optimistic > 0) type = 3;
+      else if (grading.adventurous < 0 && grading.optimistic < 0) type = 4;
+
+      localStorage.setItem('results', type);
 		}
 	}
 
@@ -119,12 +132,17 @@
 			</div>
 
 			{#if current === questions.length - 1}
-        <a on:click={(e) => {if (!submitReady) e.preventDefault()}} href="/results">
-          <button on:click={submitAnswers} class="submit" type="button">
-            <img class="button-hat" src={ChristmasHat} alt="christmas hat" />
-            Submit answers
-          </button>
-        </a>
+				<a
+					on:click={(e) => {
+						if (!submitReady) e.preventDefault();
+					}}
+					href="/results"
+				>
+					<button on:click={submitAnswers} class="submit" type="button">
+						<img class="button-hat" src={ChristmasHat} alt="christmas hat" />
+						Submit answers
+					</button>
+				</a>
 			{/if}
 		</div>
 	{/key}
@@ -256,7 +274,7 @@
 		background-color: var(--text);
 	}
 
-  a {
-    text-decoration: none;
-  }
+	a {
+		text-decoration: none;
+	}
 </style>
