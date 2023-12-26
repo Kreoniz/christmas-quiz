@@ -23,7 +23,7 @@
 
 <style>
 	.container {
-    text-align: center;
+		text-align: center;
 		padding: 0 1rem;
 	}
 
