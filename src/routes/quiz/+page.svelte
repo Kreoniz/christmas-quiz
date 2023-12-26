@@ -55,14 +55,15 @@
 
 			let type;
 			if (grading.adventurous > 0 && grading.optimistic > 0) type = 1;
-			else if (grading.adventurous > 0 && grading.optimistic < 0) type = 2;
-			else if (grading.adventurous < 0 && grading.optimistic > 0) type = 3;
-			else if (grading.adventurous < 0 && grading.optimistic < 0) type = 4;
+			else if (grading.adventurous > 0 && grading.optimistic <= 0) type = 2;
+			else if (grading.adventurous <= 0 && grading.optimistic > 0) type = 3;
+			else if (grading.adventurous <= 0 && grading.optimistic <= 0) type = 4;
 
 			localStorage.setItem('results', type);
 			completed = true;
 			sessionStorage.removeItem('currentQuizQuestion');
 			sessionStorage.removeItem('quizAnswers');
+      console.log(type);
 		}
 	}
 
