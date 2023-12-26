@@ -4,6 +4,8 @@
 	import { questions } from '$lib/files/questions.js';
 	import Icon from '$lib/utils/Icon.svelte';
 	import ChristmasHat from '$lib/img/christmas-hat.webp';
+  import SvgWaterfall from '$lib/SvgWaterfall.svelte';
+  import StarSvg from '$lib/img/star.svg?raw';
 
 	let current = 0;
 	let question = questions[current];
@@ -155,8 +157,11 @@
 	{/key}
 </div>
 
+<SvgWaterfall svg={StarSvg} />
+
 <style>
 	.container {
+    position: relative;
 		height: 100%;
 		padding: 0 1rem;
 	}

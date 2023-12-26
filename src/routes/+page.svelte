@@ -1,6 +1,7 @@
 <script>
 	import Icon from '$lib/utils/Icon.svelte';
 	import MagicalText from '$lib/MagicalText.svelte';
+
 	export let data;
 
 	const name = 'Kreoniz';
