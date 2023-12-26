@@ -119,10 +119,12 @@
 			</div>
 
 			{#if current === questions.length - 1}
-				<button on:click={submitAnswers} class="submit" type="button">
-					<img class="button-hat" src={ChristmasHat} alt="christmas hat" />
-					Submit answers
-				</button>
+        <a on:click={(e) => {if (!submitReady) e.preventDefault()}} href="/results">
+          <button on:click={submitAnswers} class="submit" type="button">
+            <img class="button-hat" src={ChristmasHat} alt="christmas hat" />
+            Submit answers
+          </button>
+        </a>
 			{/if}
 		</div>
 	{/key}
@@ -253,4 +255,8 @@
 	input[type='radio']:checked {
 		background-color: var(--text);
 	}
+
+  a {
+    text-decoration: none;
+  }
 </style>
