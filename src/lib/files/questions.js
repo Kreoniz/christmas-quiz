@@ -1,42 +1,55 @@
 export const questions = [
 	{
-		question: 'What shape do you like the most?',
+		question: 'Do you look forward to the next year?',
 		id: 0,
-		answers: ['star', 'diamond', 'heart', 'snow']
+		answers: [
+			'Of course! There will be so many new opportunities to grow!',
+			'Nah, new year, new problems, new web frameworks...'
+		]
 	},
 	{
-		question: 'How?',
+		question: 'What web framework would you learn in the new year?',
 		id: 1,
-		answers: ['easily.', 'hardly ever']
+		answers: ['Svelte', 'React', 'SolidJS', 'Vue', 'Angular']
 	},
 	{
-		question: 'Why?',
+		question: 'Who would be the best Santa?',
 		id: 2,
-		answers: ['because.', 'to get better', 'to improve my skills']
+		answers: ['Ken Thompson', 'Linus Torvalds', 'Bill Gates', 'Bjarne Stroustrup']
 	},
 	{
-		question: 'What for?',
+		question: 'Frontend or backend?',
 		id: 3,
-		answers: ['improving']
+		answers: ['Frontend', 'Backend']
 	},
 	{
-		question: 'How many stars are there in the sky?',
+		question: 'Which word best describes your work style?',
 		id: 4,
-		answers: ["I didn't count them", 'A lot!']
+		answers: ['Passionate', 'Curious', 'Industrious', 'Meticulous', 'Pragmatic']
+	},
+	{
+		question: 'What food would you eat while coding?',
+		id: 5,
+		answers: ['Cookies and milk', 'Candy cane', 'Olivier']
 	},
 	{
 		question: 'Why learn programming?',
-		id: 5,
-		answers: ['Because', 'it', 'is', 'fun']
-	},
-	{
-		question: 'How many stars are there in the sky?',
 		id: 6,
-		answers: ["I didn't count them", 'A lot!']
+		answers: [
+			'It improves critical thinking',
+			'It allowes people to create mesmerizing projects',
+			'It pays well'
+		]
 	},
 	{
-		question: 'How many stars are there in the sky?',
+		question: 'How do programmers spend Christmas Holidays?',
 		id: 7,
-		answers: ["I didn't count them", 'A lot!']
+		answers: [
+			'Coding some christmas-themed projects',
+			'Like normal humans :P',
+			'Contemplating the meaning of existence'
+		]
 	}
 ];
+
+export const results = [];

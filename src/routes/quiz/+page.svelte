@@ -1,13 +1,14 @@
 <script>
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
-	import { questions } from '$lib/files/questions.js';
+	import { questions, results } from '$lib/files/questions.js';
 	import Icon from '$lib/utils/Icon.svelte';
 	import ChristmasHat from '$lib/img/christmas-hat.webp';
 
 	let current = 0;
 	let question = questions[current];
 	let duration = 0;
+	let submitted = false;
 
 	let answers = {};
 	for (let i = 0; i < questions.length; i++) {
@@ -41,6 +42,13 @@
 		x = side === 'right' ? 100 : -100;
 	}
 
+	function submitAnswers() {
+		submitted = true;
+		if (submitReady) {
+			console.log(answers);
+		}
+	}
+
 	onMount(() => {
 		const sessionCurrent = Number(sessionStorage.getItem('currentQuizQuestion'));
 		current = sessionCurrent;
@@ -57,6 +65,7 @@
 	});
 
 	$: question = questions[current];
+	$: submitReady = Object.entries(answers).filter((e) => e[1] === null).length === 0;
 </script>
 
 <svelte:head>
@@ -75,6 +84,7 @@
 					data-id={question.id}
 					on:click={() => goToQuestion(question.id)}
 					class:active={current === question.id}
+					class:wrong={submitted & (answers[question.id] === null)}
 					type="button"
 					class="index-btn"
 				>
@@ -109,7 +119,7 @@
 			</div>
 
 			{#if current === questions.length - 1}
-				<button class="submit" type="button">
+				<button on:click={submitAnswers} class="submit" type="button">
 					<img class="button-hat" src={ChristmasHat} alt="christmas hat" />
 					Submit answers
 				</button>
@@ -129,14 +139,20 @@
 	}
 
 	.question {
-		font-size: 2rem;
+		font-size: 1.8rem;
 		margin-bottom: 5px;
 		line-height: 1.2;
 	}
 
 	.option {
 		font-size: 1.2rem;
+		line-height: 1.2;
 		margin-block: 1rem;
+	}
+
+	.option label {
+		display: flex;
+		align-items: flex-start;
 	}
 
 	.quiz-navigation {
@@ -166,7 +182,12 @@
 	.index-btn {
 		font-size: 1.5rem;
 		padding: auto;
-		color: var(--text);
+		color: inherit;
+		transition: var(--background-transition);
+	}
+
+	.wrong {
+		color: var(--error);
 	}
 
 	.index-btn.active {
