@@ -18,8 +18,6 @@
 		if (results) {
 			passed = true;
 		}
-		passed = true;
-		results = '1';
 	});
 </script>
 
