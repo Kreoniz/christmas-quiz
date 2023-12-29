@@ -5,7 +5,7 @@ const grading = {
 
 export const questions = [
 	{
-		question: 'Do you look forward to the next year?',
+		question: 'Are you looking forward to the next year?',
 		id: 0,
 		answers: [
 			'Of course! There will be so many new opportunities to grow!',

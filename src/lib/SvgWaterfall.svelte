@@ -4,7 +4,7 @@
 	export let svg;
 
 	let wrapper;
-	const STARWIDTH = 30;
+	const SVGWIDTH = 30;
 
 	let width;
 	let height;
@@ -17,10 +17,10 @@
 		const object = div.querySelector('svg');
 		object.classList.add('div');
 
-		const xPos = Math.round(Math.random() * width);
-		const yPos = Math.round(Math.random() * height);
+		const xPos = Math.round(Math.random() * (width + 2 * SVGWIDTH)) - SVGWIDTH;
+		const yPos = height / 2 + Math.round(Math.random() * height);
 
-		object.style.width = `${STARWIDTH}px`;
+		object.style.width = `${SVGWIDTH}px`;
 		object.aspectRatio = 1;
 		object.style.top = 0;
 		object.style.left = `${xPos}px`;
@@ -34,7 +34,7 @@
 			},
 			{
 				fill: 'both',
-				duration: height * 10
+				duration: (3 / 2) * height * 10
 			}
 		);
 
@@ -61,7 +61,7 @@
 	}
 
 	function animateSvgs() {
-		for (let i = 0; i < 5; i += 1) {
+		for (let i = 0; i < 7; i += 1) {
 			spawnSvg();
 		}
 
@@ -71,7 +71,7 @@
 	}
 
 	onMount(() => {
-		width = wrapper.offsetWidth - STARWIDTH;
+		width = wrapper.offsetWidth - SVGWIDTH;
 		height = wrapper.offsetHeight;
 
 		setTimeout(() => {
@@ -93,9 +93,10 @@
 		position: absolute;
 		z-index: -1;
 		top: 0;
+		left: 0;
 		width: 100%;
 		height: 100%;
-		opacity: 0.1;
+		opacity: 0.125;
 	}
 
 	.icon {

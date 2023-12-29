@@ -7,6 +7,8 @@
 	import ChristmasCat2 from '$lib/img/christmas-cat2.jpg';
 	import ChristmasCat3 from '$lib/img/christmas-cat3.jpg';
 	import ChristmasCat4 from '$lib/img/christmas-cat4.jpg';
+	import SvgWaterfall from '$lib/SvgWaterfall.svelte';
+	import SnowflakeSvg from '$lib/img/snowflake.svg?raw';
 
 	let passed = false;
 	let results;
@@ -16,6 +18,8 @@
 		if (results) {
 			passed = true;
 		}
+		passed = true;
+		results = '1';
 	});
 </script>
 
@@ -59,6 +63,7 @@
 			</p>
 		{/if}
 		<p class="congratulations"><MagicalText text="Happy New Year!" /></p>
+		<SvgWaterfall svg={SnowflakeSvg} />
 	{:else}
 		<p class="info">Come back when you take the quiz!</p>
 		<a class="quiz-link" href="/quiz">
