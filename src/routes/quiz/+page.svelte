@@ -4,8 +4,8 @@
 	import { questions } from '$lib/files/questions.js';
 	import Icon from '$lib/utils/Icon.svelte';
 	import ChristmasHat from '$lib/img/christmas-hat.webp';
-  import SvgWaterfall from '$lib/SvgWaterfall.svelte';
-  import StarSvg from '$lib/img/star.svg?raw';
+	import SvgWaterfall from '$lib/SvgWaterfall.svelte';
+	import StarSvg from '$lib/img/star.svg?raw';
 
 	let current = 0;
 	let question = questions[current];
@@ -65,7 +65,7 @@
 			completed = true;
 			sessionStorage.removeItem('currentQuizQuestion');
 			sessionStorage.removeItem('quizAnswers');
-      console.log(type);
+			console.log(type);
 		}
 	}
 
@@ -161,7 +161,7 @@
 
 <style>
 	.container {
-    position: relative;
+		position: relative;
 		height: 100%;
 		padding: 0 1rem;
 	}
