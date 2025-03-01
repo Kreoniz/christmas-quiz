@@ -20,15 +20,6 @@
 		...And with <a class="link" target="_blank" href="https://kit.svelte.dev/">SvelteKit!</a> An awesome
 		framework enabling anyone to write complex web applications!
 	</p>
-	<div class="attribution">
-		<p>Huge thanks for the inspiration and assets to:</p>
-		<p>
-			<a class="github-link" target="_blank" href="https://github.com/bvrvr">
-				<span>Varvara Buryak</span>
-				<span class="github-icon"><Icon name="github" /></span>
-			</a>
-		</p>
-	</div>
 </div>
 
 <style>
@@ -71,26 +62,5 @@
 
 	.bold {
 		font-weight: 600;
-	}
-
-	.github-link {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 5px;
-		text-decoration: underline;
-		color: var(--text);
-	}
-
-	.github-icon {
-		display: inline-block;
-		height: 2rem;
-		width: 2rem;
-
-		transition: 1s ease;
-	}
-
-	.github-link:hover .github-icon {
-		transform: rotate(360deg);
 	}
 </style>
